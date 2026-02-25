@@ -1,0 +1,43 @@
+body{
+    background-image:url(./img/vigneto1.jpg) ;
+    background-size: cover;
+    background-attachment:fixed ;
+}
+
+.img-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.img-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden; /* Taglia l'immagine se esce dai bordi tondi */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.img-card img {
+    width: 100%;       /* Prende tutta la larghezza della card */
+    height: 250px;     /* Fissa un'altezza uguale per tutte le foto */
+    object-fit: cover; /* Taglia la foto senza schiacciarla (fondamentale!) */
+    display: block;
+}
+
+.img-info {
+    padding: 10px;
+    background: #630d16; 
+    color: white;
+}
+
+.img-info p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.img-info span {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
