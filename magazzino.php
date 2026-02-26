@@ -33,5 +33,6 @@
         <button type="submit" class="save">Inserisci nel magazzino</button>
         </form>
     </div>
+    <?php include_once 'footer.php' ?>
 </body>
 </html>

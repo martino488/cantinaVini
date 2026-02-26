@@ -1,0 +1,143 @@
+/* Stile Generale */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #5a1217; /* Rosso Bordeaux */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+/* Tabella Carrello */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #5a1217;
+    color: white;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.quantita{
+    text-align: center;
+}
+
+table thead th:nth-child(4) {
+    text-align: center;
+}
+
+/* Centra la quantità (quarta colonna) */
+table td:nth-child(4), 
+table th:nth-child(4) {
+    text-align: center;
+}
+
+/* Allinea a destra il subtotale (quinta colonna) */
+table td:nth-child(5), 
+table th:nth-child(5) {
+    text-align: right;
+    padding-right: 20px; /* Un po' di respiro dal bordo */
+}
+
+/* Stile per il testo in grassetto nel subtotale */
+table td:nth-child(5) strong {
+    color: #5a1217; /* Bordeaux come il resto */
+    font-size: 1.1rem;
+}
+
+tbody tr:hover {
+    background-color: #fdf2f2;
+}
+
+/* Colonna Quantità */
+td:nth-child(4) {
+    font-weight: bold;
+    color: #555;
+}
+
+/* Totale Generale nel Footer */
+.totale {
+    background-color: #f1f1f1;
+}
+
+.totale td {
+    padding: 20px;
+    font-size: 1.2rem;
+}
+
+.text-right {
+    text-align: right;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.prezzo-totale {
+    color: #5a1217;
+    font-weight: 800;
+    font-size: 1.4rem;
+}
+
+/* Bottoni */
+.checkout-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.btn-primary, .btn-secondary, .btn-danger {
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background-color: #5a1217;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #801a20;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-danger {
+    background-color: transparent;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}

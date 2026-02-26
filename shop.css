@@ -1,5 +1,4 @@
 body{
-    background-image:url(./img/vigneto1.jpg) ;
     background-size: cover;
     background-attachment:fixed;
 }
@@ -46,15 +45,31 @@ body{
     opacity: 0.8;
 }
 
-.desc-storia{
-    display: grid;
-    background-color: rgba(255, 255, 255, 0.75); /* Usare rgba è più moderno di #ffffffc0 */
-    width: 60%;             /* Un po' più largo, al 50% su schermi piccoli diventa un francobollo */
-    max-width: 800px;       /* Evita che su schermi giganti diventi troppo lungo */
-    place-items: center;
-    padding: 40px;          /* Dagli aria all'interno, non vorrai mica soffocare il testo! */
-    border-radius: 15px;    /* Arrotondiamo come le bottiglie di vino */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Un'ombra più profonda per dare importanza */
-    text-align: center;
-    margin: 20px auto;
+/* Rimuoviamo gli stili brutti di default del summary */
+.img-card summary {
+    list-style: none; /* Rimuove la freccetta standard su alcuni browser */
+    cursor: pointer;
+    font-weight: bold;
+    color: inherit;   /* Prende il colore del testo della card */
+    background-color: transparent; /* Evita sfondi grigiastri */
+    padding: 10px 0;
+    outline: none;    /* Toglie il bordino blu brutto quando clicchi */
 }
+
+
+.img-card summary::-webkit-details-marker {
+    display: none;
+}
+
+
+.img-card summary:hover {
+    filter: brightness(1.2); 
+}
+
+.img-card button{
+    background-color: #630d16;
+    border-radius: 20px;
+    color: aliceblue;
+     cursor: pointer;
+}
+
