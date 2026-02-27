@@ -1,9 +1,7 @@
 /* Stile Generale */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-    margin: 0;
+   background-image: url(https://i.pinimg.com/1200x/59/29/5f/59295fdf59a5396be4e95829240c63fa.jpg);
+   background-size: cover;
 }
 
 .container {
@@ -141,3 +139,15 @@ td:nth-child(4) {
     background-color: #dc3545;
     color: white;
 }
+
+.remove{
+    background-color: #801a20;
+    color: aliceblue;
+    border-radius: 20px;
+}
+
+td,th {
+    vertical-align: middle;
+    text-align: center;
+}
+
