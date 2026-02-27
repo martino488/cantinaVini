@@ -1,52 +1,57 @@
-🍷 Vinili e Vinelli – Digital Wine Cellar
-L'armonia tra il buon vino e il codice pulito
-Benvenuti in Vinili e Vinelli, un'applicazione web sviluppata in PHP e MySQL per gestire una collezione di vini con stile e semplicità. Il progetto nasce per unire la passione per l'enologia alla gestione digitale delle scorte.
+Vinili e Vinelli – Wine Management System
+L'eccellenza dell'enologia incontra la robustezza del software.
 
-🚀 Funzionalità Principali
-Vetrina Interattiva: Una griglia moderna (CSS Grid) per visualizzare le etichette.
+Vinili e Vinelli è una piattaforma E-commerce/Management sviluppata per la gestione e la vendita di vini pregiati. Il progetto integra una logica asincrona per un'esperienza utente fluida e una gestione sicura dei dati lato server.
 
-Dettaglio Intelligente: Pagina della cantina con apertura automatica delle descrizioni tramite parametri URL (Settorializzazione).
+🚀 Caratteristiche Tecniche
+Architettura MVC-lite: Separazione delle logiche di configurazione, gestione dati e visualizzazione.
 
-Gestione Immagini: Sistema di caricamento foto (JPG) con placeholder automatici.
+Carrello Dinamico (AJAX): Implementazione di un sistema di aggiunta prodotti tramite Fetch API e FormData, permettendo l'aggiornamento del contatore in tempo reale senza ricaricamento della pagina.
 
-Design Responsivo: Header "Sticky" con effetto vetro sfocato e layout adattabile a smartphone e tablet.
+Persistence Layer: Gestione del carrello tramite sessioni PHP native, garantendo la persistenza dei dati durante la navigazione.
 
-Contatto Diretto: Integrazione mailto per comunicare rapidamente con i fornitori.
+UI/UX Premium: Layout responsivo con estetica "Bordeaux Wine", utilizzo di CSS Grid, Flexbox e componenti interattivi con feedback visivo.
+
+Data Security: Interazione con il DB tramite Prepared Statements (PDO) per la prevenzione di SQL Injection e sanitizzazione degli output contro attacchi XSS.
 
 🛠️ Tech Stack
-Backend: PHP 8.x (utilizzando PDO per connessioni sicure al database).
+Backend: PHP 8.x (Session handling, PDO logic).
 
-Database: MySQL.
+Frontend: JavaScript (ES6+), HTML5, CSS3 (Custom Variables & Advanced Selectors).
 
-Frontend: HTML5, CSS3 (Modern Flexbox & Grid).
+Database: MySQL / MariaDB.
 
-Sicurezza: Utilizzo di htmlspecialchars() per prevenire attacchi XSS.
+Tools: XAMPP / Apache Environment.
 
 📂 Struttura del Progetto
 Plaintext
 /vinili-e-vinelli
 │
-├── img/                # Archivio etichette vini
-├── config.php          # Connessione al database PDO
-├── header.php          # Navbar sticky condivisa
-├── index.php           # Gallery dei vini (Vetrina)
-├── cantina.php         # Lista dettagliata con descrizioni
-├── index.css           # Stili della gallery
-└── cantina.css         # Stili specifici della cantina
-⚙️ Installazione
-Clona la repository.
+├── config.php          # Configurazione DSN e istanza PDO
+├── header.php          # Logica di sessione e Navbar asincrona
+├── shop.php            # Vetrina prodotti con data-attributes per JS
+├── add.php             # Endpoint API per gestione sessione carrello
+├── carrello.php        # Riepilogo ordini con calcolo subtotali e IVA
+├── svuota_carrello.php # Script di reset istantaneo della sessione
+├── js/
+│   └── add.js          # Logica Fetch e manipolazione DOM
+└── css/
+    ├── shop.css        # Design system e utility classes
+    └── carrello.css    # Layout tabelle e formattazione numerica
+⚙️ Setup & Configurazione
+Database: Eseguire lo script SQL per la creazione della tabella vini (ID, Nome, Anno, Prezzo, Descrizione, Immagine).
 
-Importa il database utilizzando la query CREATE TABLE vini (...).
+Environment: Configurare le costanti di connessione (Host, DB, User, Pass) nel file config.php.
 
-Configura i parametri di accesso in config.php.
+Permissions: Verificare che la directory img/ disponga dei permessi di lettura per la corretta renderizzazione delle etichette.
 
-Assicurati che la cartella img/ abbia i permessi di scrittura per l'upload.
+📝 Roadmap & Sviluppo (Marti's Corner)
+Il progetto ha superato la fase di prototipazione core. I prossimi step includono:
 
-📝 Note dello Sviluppatore (Marti's Corner)
-Questo progetto è in continua evoluzione.
+[ ] Integrazione di un sistema di checkout con validazione lato server.
 
-Voto attuale: 8.0/10 🏆
+[ ] Implementazione di tasti incrementali (+/-) nel carrello con aggiornamento asincrono.
 
-Obiettivo futuro: Implementazione di un sistema di ricerca in tempo reale e autenticazione per l'area admin.
+[ ] Area Admin protetta da autenticazione per la gestione dell'inventario.
 
-Disclaimer: Nessun programmatore è stato maltrattato durante la stesura del codice, ma diverse bottiglie di Nebbiolo sono state aperte per "testare" l'interfaccia
+Rating attuale: 8.5/10 🍷 (Migliorato grazie alla gestione sicura degli ID e al refactoring del carrello).
