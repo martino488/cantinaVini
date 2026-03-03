@@ -55,3 +55,17 @@ Il progetto ha superato la fase di prototipazione core. I prossimi step includon
 [ ] Area Admin protetta da autenticazione per la gestione dell'inventario.
 
 Rating attuale: 8.5/10 🍷 (Migliorato grazie alla gestione sicura degli ID e al refactoring del carrello).
+
+// AGGIORNAMENTO 
+📍 Integrazione Mappa Interattiva
+Il progetto utilizza Leaflet.js per geolocalizzare i vini direttamente sulla scheda prodotto.
+
+Tecnologia: Leaflet.js (OpenStreetMap).
+
+Funzionamento: Il sistema recupera le coordinate lat e lon dal database MySQL e le passa al visore JavaScript.
+
+Caratteristiche: * Marker dinamico posizionato sulle coordinate del vigneto.
+
+Popup interattivo con il nome del vino 🍷.
+
+Layout responsivo integrato con CSS Grid
