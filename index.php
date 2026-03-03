@@ -1,47 +1,87 @@
-<?php include_once 'config.php' ?>
+<?php 
+session_start(); 
+require_once 'config.php'; 
+require_once 'class/database.php'; 
 
-<!DOCTYPE html>
-<html lang="en">
+// --- 1. LOGICA DI LOGIN (Il "Motore") ---
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['username'], $_POST['password'])) {
+    $user_input = trim($_POST['username']);
+    $pass_input = trim($_POST['password']);
+    
+    
+    $sql    = "SELECT * FROM utenti WHERE username = :username";
+    $pars   = [':username' => $user_input];
+    $utente_trovato = queryExec($sql, $pars);
+
+    $utente = (isset($utente_trovato[0])) ? $utente_trovato[0] : $utente_trovato;
+
+   
+    if ($utente && password_verify($pass_input, $utente['password'])) {
+        if (session_status() === PHP_SESSION_NONE) session_start();
+        
+        $_SESSION['username'] = $utente['username']; 
+        session_write_close();
+        header("Location: index.php");
+        exit();
+    } else {
+        header("Location: login.php?errore=1");
+        exit();
+    }
+}
+
+// --- 2. RECUPERO DATI DAL DB ---
+$query = "SELECT * FROM vini";
+$immaginiVini = queryExec($query);
+?><!DOCTYPE html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vinili e Vinelli</title>
-    <?php include_once 'header.php' ?>
+    <link rel="stylesheet" href="<?php echo BASE_URL ?>/assets/css/index.css">
+    <title>Vinili e Vinelli - Cantina</title>
 </head>
 <body>
-    <?php 
-    $query = $pdo->query("SELECT id,nome,anno,immagine FROM vini");
-    $immaginiVini= $query->fetchAll(PDO::FETCH_ASSOC);
-     ?>
 
-    <div class="img-grid">
-        <?php foreach($immaginiVini as $vino) : ?>
-        <div class="img-card">
-            <a href="vino.php?id=<?php echo ($vino['id']); ?>">
-                <img src="img/<?php echo !empty($vino['immagine']) ? $vino['immagine'] : 'default.jpg'; ?>">
-            </a>
+    <?php include_once 'templates/header.php' ?>
+
+    
+        <?php if (isset($_SESSION['username'])): ?>
             
-            <div class="img-info">
-                <p><?php echo mb_strtoupper(htmlspecialchars($vino['nome'])); ?></p>
-                <span><?php echo htmlspecialchars($vino['anno']); ?></span>
+            <div class="img-grid">
+                <?php foreach($immaginiVini as $vino) : ?>
+                    <div class="img-card">
+                     <a href="vino.php?id=<?php echo ($vino['id']); ?>">
+                        <img src="<?php echo $vino['immagine'] ? BASE_URL."/assets/img/".$vino['immagine'] : BASE_URL."/assets/img/default.jpg"; ?>">
+                    </a>
+                        
+                              <div class="img-info">
+                            <h3><?php echo htmlspecialchars($vino['nome']); ?></h3>
+                            <p><?php echo htmlspecialchars($vino['anno']); ?></p>
+                        
+                        </div>
+                      
+                    </div>
+                <?php endforeach ?>
             </div>
-        </div>
-    <?php endforeach ?>
-        </div>
 
+            <div class="desc-storia">
+                <h1 class="titolo">La Nostra Filosofia</h1>
+                <p>Benvenuto, <?php echo htmlspecialchars($_SESSION['username']); ?>. 
+                Qui la tradizione incontra la passione per il buon vino.</p>
+            </div>
 
-        <div class="desc-storia">
-            <h1 class="titolo">La Nostra Filosofia</h1>
-            <h3 class="sottotitolo">Non vendiamo solo bottiglie, ma momenti da ricordare</h3>
-            <p class="testo">Crediamo fermamente che il vino non sia un semplice prodotto, ma un linguaggio universale. È condivisione davanti a un tramonto, è la cultura millenaria di mani sporche di terra, ed è — ammettiamolo — quel pizzico di sana follia che rende ogni serata imprevedibile. Un buon calice ha il potere di fermare il tempo, di trasformare una cena qualunque in un ricordo che resta.
+        <?php else: ?>
+            
+            <div class="access-denied">
+                <h2>Ehilà marti! Non puoi sbirciare i vini senza invito.</h2>
+                <p>Devi prima fare il login per accedere alla nostra collezione privata.</p>
+                <a href="login.php" class="btn-login">VAI AL LOGIN</a>
+            </div>
 
-                            Per questo motivo, la nostra selezione non segue le mode del momento o le logiche dei grandi numeri. Ogni singola etichetta della nostra collezione è stata scelta personalmente. Non ci siamo fidati delle schede tecniche o delle recensioni patinate: siamo andati nelle vigne, abbiamo parlato con i produttori e, soprattutto, abbiamo stappato.
+        <?php endif; ?>
+  
 
-                            Ogni vino che vedi su questo sito è stato assaggiato, testato e approvato dal nostro team. Abbiamo scartato decine di bottiglie che "non parlavano" per tenere solo quelle capaci di emozionare. Sì, lo sappiamo, marti... è un lavoro sporco e qualcuno doveva pur sacrificarsi per farlo. Quel qualcuno siamo noi, e lo abbiamo fatto con una dedizione che rasenta l'ossessione (e forse un leggero mal di testa il giorno dopo).
+    <?php include_once 'templates/footer.php' ?>
 
-                            Dalle vigne eroiche strappate alla roccia, fino alle distese assolate del Sud, portiamo sulla tua tavola solo ciò che berremmo noi stessi. Perché la vita è troppo breve per bere un vino che non abbia un'anima.</h4>
-        </div>
-            <?php include_once 'footer.php' ?>
-    </body>
+</body>
 </html>

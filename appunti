@@ -1,0 +1,21 @@
+<script>
+  (function() {
+    var latVino = <?php echo number_format((float)$vino['lat'], 8, '.', ''); ?>;
+    var lonVino = <?php echo number_format((float)$vino['lon'], 8, '.', ''); ?>;
+    window.coordVino = [latVino, lonVino];
+    console.log("Mappa pronta per:", window.coordVino);
+  })();
+</script>
+
+------------------------------------------  il primo codice funziona, mentre in quello giù non mi identificava 'const coordVino', 
+-----------------------------------------   messaggio di errore : Uncaught SyntaxError: unexpected token: keyword 'const
+
+<script>
+    const lat = <?php echo $vino['lat']; ?>;  ---> mancavano i punti e virgola dopo la const e JS vedevea due const sulla stessa riga
+    const lon = <?php echo $vino['lon']; ?>;
+
+    const coordVino = [lat,lon];
+    console.log("test coord ", coordVino);
+</script>
+
+--------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\-------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\-----------------\\\\\\\\\\\\\\\

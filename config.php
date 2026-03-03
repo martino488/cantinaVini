@@ -1,16 +1,9 @@
 <?php 
-
-$host     = "127.0.0.1";
-$username = "root";
-$password = "";
-$db = "dbcantina";
-
-try{
-    $pdo = new PDO("mysql:host=$host; dbname=$db", $username, $password);
-    $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}catch(PDOException $e){
-    die("problemi nella connessione " . $e->getMessage());
-}
+define('DB_HOST', "127.0.0.1");
+define('DB_USER', "root");
+define('DB_PASS', "");
+define('DB_NAME', "dbcantina");
+define('BASE_URL', "/progetti/cantina");
 
 // try{
 //     $sql = "CREATE DATABASE dbcantina";
@@ -51,7 +44,3 @@ try{
 //     die("errore nell'inserimento" . $e->getMessage());
 // }
 
-
-
-
-?>

@@ -1,19 +1,25 @@
-<?php include_once 'config.php' ?>
+<?php 
+require_once 'config.php'; 
+require_once 'class/database.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="cantina.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL ?>/assets/css/cantina.css">
+     <link rel="stylesheet" href="<?php echo BASE_URL ?>/assets/css/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vinili e Vinelli</title>
-    <?php include 'header.php' ?>
+    <title>Cantina</title>
+    <?php include 'templates/header.php' ?>
 </head>
 
 <body>
 
-    <?php $query       = $pdo->query("SELECT nome, anno, tipologia, email, descrizione, immagine, prezzo FROM vini "); ?>
-    <?php $viniCantina = $query->fetchAll(PDO::FETCH_ASSOC); ?>
+    <?php 
+    $query = "SELECT * FROM vini "; 
+    $viniCantina = queryExec($query);
+    ?>
 
 
 
@@ -48,7 +54,7 @@
             <?php endforeach ?>
             </div>
     </div>
-    <?php include_once 'footer.php' ?>
+    <?php include_once 'templates/footer.php' ?>
 </body>
 
 </html>

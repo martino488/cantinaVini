@@ -1,0 +1,48 @@
+/* Esempio di proprietà da usare, marti! */
+form {
+    max-width: 350px;
+    margin: 50px auto; /* Centra orizzontalmente */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-family: sans-serif;
+    color: #722f37 ;
+}
+
+input[type="text"], 
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Importante per non far uscire l'input dai bordi! */
+}
+
+button {
+    width: 100%;
+    background-color: #722f37; /* Color Vino */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #4e1d23;
+}
+
+a {
+    text-decoration: none;
+    color: #722f37;
+    font-weight: bold;
+}
+
+.form h2{
+    color: #722f37;
+    font-weight: bold;
+}

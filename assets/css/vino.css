@@ -1,0 +1,43 @@
+.scheda-vino-layout {
+    display: grid;
+    /* La prima colonna è fissa (380px), la seconda è flessibile (1fr) */
+    grid-template-columns: 380px 1fr; 
+    gap: 40px;
+    padding: 40px;
+    align-items: start;
+}
+
+.visual-lato {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-vino h1 {
+    font-size: 3rem;
+    margin-top: 0;
+    color: #4a0e0e; /* Un rosso vino profondo */
+}
+
+.dati-tecnici {
+    display: flex;
+    gap: 30px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.descrizione-sezione p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+#map {
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    max-width: 1060px;
+    vertical-align: center;
+}

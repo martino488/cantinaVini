@@ -8,7 +8,7 @@ document.querySelectorAll('.add, .remove').forEach(bottone => {
         dati.append('id',idVino);
         dati.append('action', azione);
 
-        fetch('gestione_carrello.php', {
+        fetch('/progetti/cantina/ajax/gestione_carrello.php', {
             method : 'POST',
             body: dati
         })

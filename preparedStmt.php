@@ -1,5 +1,6 @@
 <?php
 include_once 'config.php';
+require_once 'class/database.php'; 
 
 $errors = [];
 
@@ -34,16 +35,9 @@ if(empty($email)){
 if(empty($errors)){
     try{
     $sql = "INSERT INTO vini (nome, anno, tipologia, email, descrizione) VALUES (:nome, :anno, :tipologia, :email, :descrizione)";
-    $stmt = $pdo -> prepare($sql);
+    $pars = [':nome' => $vino,':anno' => $anno,':tipologia' => $tipologia,':email' => $email,':descrizione' => $descrizione];
+    queryExec($sql, $pars);
    
-    $stmt -> execute([
-    ':nome' => $vino,
-    ':anno' => $anno,
-    ':tipologia' => $tipologia,
-    ':email' => $email,
-    ':descrizione' => $descrizione
-    ]);
-    
 }catch(PDOException $e){
     die("errore nell'inserimento" . $e->getMessage());
 }
@@ -59,5 +53,21 @@ if(isset($_GET['success'])){
         }
 }}
 
+if($_SERVER["REQUEST_METHOD"] === "POST"){
+    $username = trim($_POST['username']?? '');
+    $password = trim($_POST['password']?? '');
+    try{
+        
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO utenti (username, password) VALUES (:username, :password)";
+        $pars = [':username' => $username, ':password' => $password_hash];
+        queryExec($sql, $pars);
+
+    }catch (PDOException $e){
+        die("errore nel'inserimento " . $e->getMessage());
+    }
+    header("Location:login.php?success=1");
+    exit();
+}
 
 ?>
